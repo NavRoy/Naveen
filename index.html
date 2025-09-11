@@ -2545,7 +2545,24 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.from(".quote-subtitle", { y: -30, opacity: 0, delay: 0.25, duration: 0.8, ease: "power3.out" });
   gsap.from(".quote-desc", { y: 30, opacity: 0, delay: 0.45, duration: 0.9, ease: "power3.out" });
   gsap.from(".quote-btn", { scale: 0.88, opacity: 0, delay: 0.7, duration: 0.7, ease: "back.out(1.4)" });
- 
+
+  const words = ['Web Experiences', 'Interfaces', 'Identities'];
+let index = 0;
+const wordTarget = document.querySelector('.hero-title span');
+
+if (wordTarget) {
+  setInterval(() => {
+    gsap.to(wordTarget, {
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => {
+        wordTarget.textContent = words[index];
+        index = (index + 1) % words.length;
+        gsap.to(wordTarget, { opacity: 1, duration: 0.3 });
+      }
+    });
+  }, 3000);
+}
 
   /* ===== ABOUT (scroll) ===== */
   gsap.from("#about .section-title", {
@@ -2626,3 +2643,4 @@ gsap.from("#portfolio .portfolio-item", {
 </body>
 
 </html>
+
